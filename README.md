@@ -70,7 +70,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 ## 📞 Contact
 
-- **Email**: marco.moya@example.com
+- **Email**: 915marco@gmail.com
 - **LinkedIn**: [LinkedIn Profile](https://linkedin.com/in/marcomoya)
 - **GitHub**: [GitHub Profile](https://github.com/MarcoMoya1)
 
