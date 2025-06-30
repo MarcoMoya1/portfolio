@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +28,9 @@
                     <a href="#about" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
                     <a href="#skills" class="nav-link">Skills</a>
                 </li>
                 <li class="nav-item">
@@ -35,6 +38,11 @@
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" data-theme-toggle aria-label="Change to dark theme" class="theme-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </li>
             </ul>
             <div class="hamburger">
@@ -62,7 +70,7 @@
             <div class="hero-image">
                 <div class="profile-card">
                     <div class="profile-image">
-                        <i class="fas fa-user-circle"></i>
+                        <img src="images/marco.jpg " alt="Marco Moya" class="profile-photo">
                     </div>
                 </div>
             </div>
@@ -98,6 +106,74 @@
                             <h3>5+</h3>
                             <p>Technologies</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Software Developer</h3>
+                        <span class="company">Freelance</span>
+                        <span class="duration">2022 - Present</span>
+                    </div>
+                    <div class="experience-content">
+                        <p>
+                            Developing full-stack web applications using modern technologies including React, Node.js, and MongoDB. 
+                            Collaborating with clients to understand requirements and deliver high-quality solutions that meet their needs.
+                        </p>
+                        <ul class="experience-highlights">
+                            <li>Built responsive web applications with React and Node.js</li>
+                            <li>Implemented RESTful APIs and database integrations</li>
+                            <li>Deployed applications using modern cloud platforms</li>
+                            <li>Maintained and optimized existing codebases</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>IT Support Specialist</h3>
+                        <span class="company">Amplifier</span>
+                        <span class="duration">2020 - Present </span>
+                    </div>
+                    <div class="experience-content">
+                        <p>
+                            Provided technical support and troubleshooting for hardware and software issues. 
+                            Managed IT infrastructure and ensured smooth operation of computer systems and networks.
+                        </p>
+                        <ul class="experience-highlights">
+                            <li>Resolved hardware and software technical issues</li>
+                            <li>Managed network infrastructure and security</li>
+                            <li>Provided user training and documentation</li>
+                            <li>Maintained system backups and disaster recovery procedures</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Computer Science Student</h3>
+                        <span class="company">University Studies</span>
+                        <span class="duration">2019 - 2023</span>
+                    </div>
+                    <div class="experience-content">
+                        <p>
+                            Completed comprehensive coursework in computer science fundamentals, data structures, 
+                            algorithms, and software engineering principles. Developed strong analytical and problem-solving skills.
+                        </p>
+                        <ul class="experience-highlights">
+                            <li>Studied data structures, algorithms, and software engineering</li>
+                            <li>Completed projects in various programming languages</li>
+                            <li>Gained experience with version control and collaborative development</li>
+                            <li>Developed understanding of software development lifecycle</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -247,7 +323,7 @@
                     <div class="contact-methods">
                         <div class="contact-method">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:marco.moya@example.com">marco.moya@example.com</a>
+                            <a href="mailto:marco.moya@example.com">915marco@gmail.com</a>
                         </div>
                         <div class="contact-method">
                             <i class="fab fa-linkedin"></i>
@@ -280,7 +356,12 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Marco Moya. All rights reserved.</p>
+            <div class="footer-content">
+                <p>&copy; 2023 Marco Moya. All rights reserved.</p>
+                <a href="Resume.pdf" download class="btn btn-secondary download-resume">
+                    <i class="fas fa-download"></i> Download Resume
+                </a>
+            </div>
         </div>
     </footer>
 

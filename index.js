@@ -1,5 +1,68 @@
 console.log("Howdy there!");
 
+// Theme Toggle Functionality
+function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
+    if (localStorageTheme !== null) {
+        return localStorageTheme;
+    }
+
+    if (systemSettingDark.matches) {
+        return "dark";
+    }
+
+    return "light";
+}
+
+function updateThemeOnHtmlEl({ theme }) {
+    document.querySelector("html").setAttribute("data-theme", theme);
+}
+
+function updateThemeToggleButton({ theme }) {
+    const button = document.querySelector("[data-theme-toggle]");
+    if (button) {
+        const newCta = theme === "dark" ? "Change to light theme" : "Change to dark theme";
+        button.setAttribute("aria-label", newCta);
+        
+        // Update icon
+        const icon = button.querySelector("i");
+        if (icon) {
+            icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+        }
+    }
+}
+
+// Initialize theme on page load
+const localStorageTheme = localStorage.getItem("theme");
+const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark });
+
+updateThemeOnHtmlEl({ theme: currentThemeSetting });
+updateThemeToggleButton({ theme: currentThemeSetting });
+
+// Theme toggle event listener
+const button = document.querySelector("[data-theme-toggle]");
+if (button) {
+    button.addEventListener("click", () => {
+        const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+
+        updateThemeOnHtmlEl({ theme: newTheme });
+        updateThemeToggleButton({ theme: newTheme });
+        localStorage.setItem("theme", newTheme);
+        currentThemeSetting = newTheme;
+    });
+}
+
+// Listen for system theme changes
+systemSettingDark.addEventListener("change", (e) => {
+    const newTheme = e.matches ? "dark" : "light";
+    if (localStorage.getItem("theme") === null) {
+        updateThemeOnHtmlEl({ theme: newTheme });
+        updateThemeToggleButton({ theme: newTheme });
+        currentThemeSetting = newTheme;
+    }
+});
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -33,10 +96,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        navbar.style.background = 'var(--color-nav-bg)';
+        navbar.style.boxShadow = '0 2px 20px var(--color-shadow)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = 'var(--color-nav-bg)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -57,7 +120,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.skill-category, .project-card, .stat, .contact-form');
+    const animateElements = document.querySelectorAll('.skill-category, .project-card, .stat, .contact-form, .experience-item');
     animateElements.forEach(el => observer.observe(el));
 });
 
@@ -253,7 +316,7 @@ progressBar.style.cssText = `
     left: 0;
     width: 0%;
     height: 3px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
     z-index: 10001;
     transition: width 0.1s ease;
 `;
@@ -292,7 +355,7 @@ window.addEventListener('scroll', () => {
 const activeNavStyles = document.createElement('style');
 activeNavStyles.textContent = `
     .nav-link.active {
-        color: #2563eb !important;
+        color: var(--color-primary) !important;
     }
     
     .nav-link.active::after {
