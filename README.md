@@ -34,34 +34,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 - Card-based layout for projects and skills
 - Mobile-first responsive design
 - Professional typography and spacing
-
-## 📋 Setup Instructions
-
-1. Clone or download the repository
-2. Open `index.html` in your web browser
-3. Customize the content to match your information
-4. Update contact information and social links
-5. Add your own projects and skills
-
-## 🔧 Customization
-
-### Personal Information
-- Update the hero section with your name and title
-- Modify the about section with your background
-- Add your actual contact information
-- Update social media links
-
-### Projects
-- Replace project cards with your actual projects
-- Update GitHub links to your repositories
-- Add project screenshots or images
-- Modify technology tags to match your stack
-
-### Skills
-- Add or remove skill categories
-- Update skill items with your expertise
-- Modify icons using Font Awesome classes
-
+- 
 ### Styling
 - Change colors in the CSS variables
 - Modify fonts by updating Google Fonts link
@@ -70,7 +43,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and exper
 
 ## 📞 Contact
 
-- **Email**: marco.moya@example.com
+- **Email**: 915marco@gmail.com
 - **LinkedIn**: [LinkedIn Profile](https://linkedin.com/in/marcomoya)
 - **GitHub**: [GitHub Profile](https://github.com/MarcoMoya1)
 
