@@ -837,3 +837,16 @@ section {
         scroll-behavior: smooth;
     }
 }
+
+.crypto-projects-center {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.crypto-projects-center .project-card {
+    max-width: 400px;
+    width: 100%;
+}
