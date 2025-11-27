@@ -60,38 +60,64 @@ app.post('/api/contact', async (req, res) => {
             });
         }
 
-        // Email content
+        // Sanitize inputs to prevent spam triggers
+        const sanitizedName = name.replace(/[<>]/g, '');
+        const sanitizedEmail = email.replace(/[<>]/g, '');
+        const sanitizedMessage = message.replace(/[<>]/g, '');
+
+        // Email content with improved deliverability
         const mailOptions = {
-            from: `"${name}" <${process.env.EMAIL_USER}>`,
+            from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
             to: process.env.EMAIL_TO || process.env.NOTIFICATION_EMAIL || process.env.EMAIL_USER,
-            replyTo: email,
-            subject: `New Contact Form Submission from ${name}`,
+            replyTo: sanitizedEmail,
+            subject: `Portfolio Contact: ${sanitizedName}`,
+            headers: {
+                'X-Priority': '1',
+                'X-MSMail-Priority': 'High',
+                'Importance': 'high',
+            },
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h2 style="color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">
-                        New Contact Form Submission
-                    </h2>
-                    <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin-top: 20px;">
-                        <p><strong>Name:</strong> ${name}</p>
-                        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-                        <p><strong>Message:</strong></p>
-                        <div style="background-color: white; padding: 15px; border-left: 4px solid #4CAF50; margin-top: 10px;">
-                            ${message.replace(/\n/g, '<br>')}
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                </head>
+                <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <div style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 30px;">
+                        <h2 style="color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 0;">
+                            New Contact Form Submission
+                        </h2>
+                        <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin-top: 20px;">
+                            <p style="margin: 10px 0;"><strong>Name:</strong> ${sanitizedName}</p>
+                            <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${sanitizedEmail}" style="color: #4CAF50;">${sanitizedEmail}</a></p>
+                            <p style="margin: 10px 0;"><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+                            <p style="margin: 15px 0 10px 0;"><strong>Message:</strong></p>
+                            <div style="background-color: white; padding: 15px; border-left: 4px solid #4CAF50; margin-top: 10px; white-space: pre-wrap;">
+${sanitizedMessage.replace(/\n/g, '\n')}
+                            </div>
+                        </div>
+                        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #666;">
+                            <p style="margin: 5px 0;">This email was sent from your portfolio contact form.</p>
+                            <p style="margin: 5px 0;">To reply, simply reply to this email or click the email address above.</p>
                         </div>
                     </div>
-                    <p style="color: #666; font-size: 12px; margin-top: 20px;">
-                        This email was sent from your portfolio contact form.
-                    </p>
-                </div>
+                </body>
+                </html>
             `,
             text: `
 New Contact Form Submission
 
-Name: ${name}
-Email: ${email}
+Name: ${sanitizedName}
+Email: ${sanitizedEmail}
+Date: ${new Date().toLocaleString()}
 
 Message:
-${message}
+${sanitizedMessage}
+
+---
+This email was sent from your portfolio contact form.
+To reply, simply reply to this email.
             `
         };
 
