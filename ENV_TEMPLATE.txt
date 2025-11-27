@@ -1,0 +1,16 @@
+# Copy this file to .env and fill in your email credentials
+
+# Email Configuration
+# For Gmail, you'll need to use an App Password: https://support.google.com/accounts/answer/185833
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password-here
+EMAIL_TO=your-email@gmail.com
+
+# SMTP Configuration (Gmail defaults shown)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+
