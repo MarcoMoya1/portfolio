@@ -154,26 +154,35 @@ if (contactForm) {
         submitButton.textContent = 'Sending...';
         
         try {
-            // Send form data to backend
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, message })
-            });
-            
-            const data = await response.json();
-            
-            if (data.success) {
-                showNotification(data.message, 'success');
-                this.reset();
-            } else {
-                showNotification(data.message || 'An error occurred. Please try again.', 'error');
+            // Initialize EmailJS (only needs to be done once)
+            if (typeof emailjs === 'undefined') {
+                showNotification('Email service not loaded. Please refresh the page.', 'error');
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+                return;
             }
+
+            // Send email using EmailJS
+            const serviceId = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
+            const templateId = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
+            const publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+
+            // Initialize EmailJS with your public key
+            emailjs.init(publicKey);
+
+            // Send the email
+            await emailjs.send(serviceId, templateId, {
+                from_name: name,
+                from_email: email,
+                message: message,
+                to_email: '915marco@gmail.com' // Your email address
+            });
+
+            showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+            this.reset();
         } catch (error) {
-            console.error('Error submitting form:', error);
-            showNotification('Network error. Please check your connection and try again.', 'error');
+            console.error('Error sending email:', error);
+            showNotification('Sorry, there was an error sending your message. Please try again later.', 'error');
         } finally {
             // Re-enable submit button
             submitButton.disabled = false;
