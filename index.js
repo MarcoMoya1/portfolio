@@ -170,12 +170,12 @@ if (contactForm) {
             // Initialize EmailJS with your public key
             emailjs.init(publicKey);
 
-            // Send the email
+            // Send the email - variable names must match your EmailJS template
             await emailjs.send(serviceId, templateId, {
-                from_name: name,
-                from_email: email,
-                message: message,
-                to_email: '915marco@gmail.com' // Your email address
+                name: name,           // Matches {{name}} in template
+                email: email,          // Matches {{email}} in template
+                title: name,          // Matches {{title}} in template (using name as title)
+                message: message      // Matches {{message}} in template
             });
 
             showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
