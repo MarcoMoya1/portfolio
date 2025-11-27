@@ -163,9 +163,9 @@ if (contactForm) {
             }
 
             // Send email using EmailJS
-            const serviceId = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
-            const templateId = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
-            const publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+            const serviceId = 'service_v2ot029'; // Your EmailJS service ID
+            const templateId = 'template_sawdrhi'; // Your EmailJS template ID
+            const publicKey = 'W6f8smzDABq0-6qWO'; // Your EmailJS public key
 
             // Initialize EmailJS with your public key
             emailjs.init(publicKey);
